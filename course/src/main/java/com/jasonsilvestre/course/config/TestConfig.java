@@ -1,14 +1,8 @@
 package com.jasonsilvestre.course.config;
 
-import com.jasonsilvestre.course.entities.Category;
-import com.jasonsilvestre.course.entities.Order;
-import com.jasonsilvestre.course.entities.Product;
-import com.jasonsilvestre.course.entities.User;
+import com.jasonsilvestre.course.entities.*;
 import com.jasonsilvestre.course.entities.enums.OrderStatus;
-import com.jasonsilvestre.course.repositories.CategoryRepository;
-import com.jasonsilvestre.course.repositories.OrderRepository;
-import com.jasonsilvestre.course.repositories.ProductRepository;
-import com.jasonsilvestre.course.repositories.UserRepository;
+import com.jasonsilvestre.course.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemrepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -68,6 +65,13 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1,u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+
+        orderItemrepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 
     }
 }
