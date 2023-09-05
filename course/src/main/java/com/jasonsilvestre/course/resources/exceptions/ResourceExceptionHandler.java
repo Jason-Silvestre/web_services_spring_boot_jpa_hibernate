@@ -1,7 +1,9 @@
 package com.jasonsilvestre.course.resources.exceptions;
 
 import com.jasonsilvestre.course.services.exceptions.ResourceNotFoundException;
+
 import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
