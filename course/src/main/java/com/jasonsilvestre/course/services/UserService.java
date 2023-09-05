@@ -2,6 +2,8 @@ package com.jasonsilvestre.course.services;
 
 import com.jasonsilvestre.course.entities.User;
 import com.jasonsilvestre.course.repositories.UserRepository;
+import com.jasonsilvestre.course.resources.exceptions.ResourceExceptionHandler;
+import com.jasonsilvestre.course.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,7 @@ public class UserService {
 
     public User findById(Long id) {
         Optional<User> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User obj) {
